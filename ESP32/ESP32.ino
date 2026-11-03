@@ -5,10 +5,10 @@
 #include <Adafruit_BMP280.h>
 
 //CONEXÕES WIFI E MQTT
-const char* ssid = "RIRI 2G";
-const char* password = "riri2521";
+const char* ssid = "RAITARO";
+const char* password = "riri2008";
 const char* mqtt_server = "mqtt-dashboard.com";
-const char* mqtt_topic  = "casa/ricardoraitarozubcov/teste/esp32";
+const char* mqtt_topic  = "prof.thiago/unip/pd2/fish_time/dados";
 
 //PINOS DHT E BMP280
 const int DHT_PIN = 14;

@@ -5,7 +5,7 @@ from datetime import datetime
 
 HOST = "mqtt-dashboard.com"
 PORT = 1883
-TOPIC = "casa/ricardoraitarozubcov/teste/esp32"
+TOPIC = "prof.thiago/unip/pd2/fish_time/dados"
 
 DADOS_ESTACAO = "dados_estacao.csv"
 
@@ -47,6 +47,9 @@ def on_message(client, userdata, msg):
             writer = csv.writer(f)
             writer.writerow([data, temp, umid, pres, status]) 
 
+    except json.JSONDecodeError:
+        print("Aviso: A mensagem recebida não é um JSON válido e foi ignorada.")
+        
 # INICIAR MQTT
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
