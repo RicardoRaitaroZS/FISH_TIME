@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 # TRATAMENTO
-df = pd.read_csv("dados_estacao.csv")
+df = pd.read_csv("PYTHON/dados_estacao.csv")
 df.head()
 df.info()
 df["Data_Hora"] = pd.to_datetime(df["Data_Hora"], format="%Y-%m-%d %H:%M:%S")
@@ -22,15 +22,15 @@ imagem_condicao = ""
 
 if condicao == "NÃO PESCAR":
     texto_condição = "As condições climáticas estão totalmente desfavoráveis para a pesca. Não pesque!"
-    imagem_condicao = "https://media.canva.com/v2/image-resize/format:PNG/height:447/quality:100/uri:ifs%3A%2F%2FM%2F27d678fa-ab91-4a78-8867-73d094949de3/watermark:F/width:447?csig=AAAAAAAAAAAAAAAAAAAAAFtvemoxv9Y8eJe_OTPaHPYGZG6G5wtlkX3_a39w4AML&exp=1793303889&osig=AAAAAAAAAAAAAAAAAAAAAGGA2eivEMblPS_oMU8FPI-wHrt389OtGaH1PTclqnBa&signer=media-rpc&token=AAIAAU0AJDI3ZDY3OGZhLWFiOTEtNGE3OC04ODY3LTczZDA5NDk0OWRlMwAAAAABoYk9xGgD5KrWt8eV2Sb0Mpt3cFile4HCYFf8h_Q4eWJv3gGXrw&x-canva-quality=screen"
+    imagem_condicao = "app/static/nao_pescar.png"
     
 elif condicao == "PESCA IDEAL":
     texto_condição = "As condições climáticas estão favoráveis para a pesca. Pesque tranquilamente!"
-    imagem_condicao = "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2Fcc24582f-5258-4dff-bb87-f88e36d17eb8/watermark:F/width:800?csig=AAAAAAAAAAAAAAAAAAAAAJhFBhgFXSp4GItbsgg6K1_B2L0oyrt-2ps9bp5F7LMm&exp=1793307740&osig=AAAAAAAAAAAAAAAAAAAAAN6vy3-o-zZgzDWkktGy-n5k5_NthDaE3TzDxak2Rxxt&signer=media-rpc&token=AAIAAU0AJGNjMjQ1ODJmLTUyNTgtNGRmZi1iYjg3LWY4OGUzNmQxN2ViOAAAAAABoYl4h2AHu3jJPk4X9qDl8I0P2oLoB1hNesvZb-NWJZMVHt0T2w&x-canva-quality=screen"
+    imagem_condicao = "app/static/pesca_ideal.png"
 
 elif condicao == "PESCAR COM CAUTELA":
     texto_condição = "As condições climáticas estão medianas para a pesca. Pesque com atenção!"
-    imagem_condicao = "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2F028626fb-8ec2-4877-89e2-4baed9cfe5ab/watermark:F/width:800?csig=AAAAAAAAAAAAAAAAAAAAAID4erPXNYxfVB0VM3sOrOqIb30pEr3Zx1ioFjLI-EGK&exp=1793308933&osig=AAAAAAAAAAAAAAAAAAAAALWT-9ob1oX0OvXZpYL17MjjZ0n6eNhnJduRjtrtEI-L&signer=media-rpc&token=AAIAAU0AJDAyODYyNmZiLThlYzItNDg3Ny04OWUyLTRiYWVkOWNmZTVhYgAAAAABoYmKu4jGWBO--Xntr_WKyNM3flae1qQCKk93PzdziB1OHLcw1Q&x-canva-quality=screen"
+    imagem_condicao = "app/static/pescar_cautela.png"
 
 # GRÁFICOS
 # GRÁFICO TEMPERATURA
@@ -271,7 +271,7 @@ if navegacao == "Dashboard":
             <div class = "card-imagem" >
                 <span style="background-color: rgb(40,167,69,0.5); padding: 2px 10px; border-radius: 20px; font-size: 12px">● CONDIÇÃO ATUAL</span>
                 <h1 style = "margin-top: 20px">{condicao}</h1>
-                <p style = "font-size:12px; margin-bottom: 10px; margin-top: -30px">{texto_condição} <img src="{imagem_condicao}", width = 160, style = "border-radius: 200px; margin-left: 355px; margin-top: -100px;"</p>
+                <p style = "font-size:12px; margin-bottom: 10px; margin-top: -30px">{texto_condição} <img src="{imagem_condicao}", width = 160, style = "border-radius: 200px; margin-left: 625px; margin-top: -100px;"</p>
             </div>
         </div>""",
         unsafe_allow_html=True,
@@ -412,8 +412,8 @@ elif navegacao == "Alertas":
             <div class="painel-status-pesca">
                 <div class = "card-imagem" >
                     <span style="background-color: rgb(40,167,69,0.5); padding: 2px 10px; border-radius: 20px; font-size: 12px">● CONDIÇÃO ATUAL</span>
-                    <h1 style = "margin-top: -10px; font-size: 28px">{condicao}</h1>
-                    <p style = "font-size:10px; margin-top: -10px">{texto_condição} <img src="{imagem_condicao}", width = 90, style = "border-radius: 200px; margin-left: 405px; margin-top: -75px;"</p>
+                    <h1 style = "margin-top: -10px; font-size: 38px">{condicao}</h1>
+                    <p style = "font-size:11px; margin-top: -30px">{texto_condição} <img src="{imagem_condicao}", width = 120, style = "border-radius: 200px; margin-left: 705px; margin-top: -75px;"</p>
                 </div>
             </div>""",
             unsafe_allow_html=True,

@@ -1,5 +1,3 @@
-# pip install pandas paho-mqtt streamlit plotly.express
-
 import paho.mqtt.client as mqtt
 import csv
 import json
@@ -47,10 +45,7 @@ def on_message(client, userdata, msg):
         # SALVAR DADOS NO CSV
         with open(DADOS_ESTACAO, mode='a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
-            writer.writerow([data, temp, umid, pres, status])
-            
-    except json.JSONDecodeError:
-        print("Aviso: A mensagem recebida não é um JSON válido e foi ignorada.")
+            writer.writerow([data, temp, umid, pres, status]) 
 
 # INICIAR MQTT
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
