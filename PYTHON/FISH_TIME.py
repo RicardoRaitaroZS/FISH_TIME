@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Fish Time Dashboard", layout="wide", initial_sidebar_state="expanded"
 )
 
-# TRATAMENTO
+# TRATAMENTO DOS DADOS
 df = pd.read_csv("PYTHON/dados_estacao.csv")
 df.head()
 df.info()
@@ -83,18 +83,22 @@ fig_pressao.update_traces(
 )
 
 # DASHBOARD
-# RESOLVER BUG VISUAL
-st.markdown(
-    """
-    <style>
+# RESOLUÇÃO DO DASHBOARD
+resolucao = """
+<style>
     .block-container {
-        padding-top: 1rem;
-        padding-bottom: 0rem;
+        min-width: 1080px !important;
+        max-width: 1080px !important;
+        min-height: 1920px !important;
+        max-height: 1920px !important;
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
     }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+</style>
+"""
+st.markdown(resolucao, unsafe_allow_html=True)
+
+
 # LAYOUT E DESIGN GERAL DO DASHBOARD
 st.markdown(
     """
@@ -203,12 +207,12 @@ st.markdown(
             margin: 0;
         }
         
-        /* Cards das condições de pesca (Alerta) */
+        /* Cards das condições de pesca (Alertas)*/
         .card-alerta {
             padding: 20px;
             border-radius: 15px;
-            height: 450px;
-            width: 430px;
+            height: 360px;
+            width: 300px;
             display: flex ;
             margin-right: 20px;
             position: relative;
@@ -264,14 +268,13 @@ if navegacao == "Dashboard":
         unsafe_allow_html=True,
     )
     st.subheader("Visão geral")
-    st.markdown("""<br>""", unsafe_allow_html=True)
     st.markdown(
         f"""
         <div class="painel-status-pesca">
             <div class = "card-imagem" >
                 <span style="background-color: rgb(40,167,69,0.5); padding: 2px 10px; border-radius: 20px; font-size: 12px">● CONDIÇÃO ATUAL</span>
-                <h1 style = "margin-top: 20px">{condicao}</h1>
-                <p style = "font-size:12px; margin-bottom: 10px; margin-top: -30px">{texto_condição} <img src="{imagem_condicao}", width = 160, style = "border-radius: 200px; margin-left: 625px; margin-top: -100px;"</p>
+                <h1 style = "margin-top: -10px; font-size: 38px">{condicao}</h1>
+                <p style = "font-size:11px; margin-top: -20px">{texto_condição} <img src="{imagem_condicao}", width = 120, style = "border-radius: 200px; margin-left: 655px; margin-top: -95px;"></p>
             </div>
         </div>""",
         unsafe_allow_html=True,
@@ -309,7 +312,7 @@ elif navegacao == "Histórico":
 
 # ALERTAS
 elif navegacao == "Alertas":
-    st_autorefresh(interval=4000)
+    st_autorefresh(interval=6000)
     st.markdown( """<h5 style = "font-size: 10px; color: #00A8A8">FISH TIME / MONITORAMENTO</h5>""",
         unsafe_allow_html=True,)
     st.subheader("Alertas e Condições")
@@ -322,25 +325,25 @@ elif navegacao == "Alertas":
         """
         <div class="card-alerta condicao-ideal">
             <br>
-            <img src="https://images.vexels.com/media/users/3/340641/isolated/preview/ced6b7b631be3178b1fcbb41c94de64c-design-minimalista-de-marca-de-verificacao-verde.png", width = 55, style = "background: rgba(13, 224, 63, 0.08); border-radius: 10px; padding: 5px">
+            <img src="https://images.vexels.com/media/users/3/340641/isolated/preview/ced6b7b631be3178b1fcbb41c94de64c-design-minimalista-de-marca-de-verificacao-verde.png", width = 45, style = "background: rgba(13, 224, 63, 0.08); border-radius: 10px; padding: 5px">
             <br>
-            <h4 style="color: #28a745;font-size: 20px; background: rgba(13, 224, 63, 0.07); border-radius: 12px; padding: 3px; margin-right: 47%; margin-left:3px; margin-top: -10px">🟢 PESCA IDEAL</h4>
-            <p style = "font-size: 13px">Condições favoráveis para pesca!</p>
+            <h4 style="color: #28a745;font-size: 14px; background: rgba(13, 224, 63, 0.07); border-radius: 12px; padding: 3px; margin-right: 47%; margin-left:3px; margin-top: -10px">🟢 PESCA IDEAL</h4>
+            <p style = "font-size: 10px">Condições favoráveis para pesca!</p>
             <br>
             <! TEMPERATURA >
             <div class = "card-imagem">
-                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 55, style = "margin-top: -20px">
-                <p style = "margin-left: 65px;margin-top: -47px; font-size:13px;margin-bottom: 50px"><b>Temperatura:</b> <br>18°C a 30°C </p>
+                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 45, style = "margin-top: -20px">
+                <p style = "margin-left: 55px;margin-top: -41px; font-size:11px;margin-bottom: 40px"><b>Temperatura:</b> <br>18°C a 30°C </p>
             <div>
             <! UMIDADE >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Umidade:</b> <br> 40% a 75% </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
+                <p style = "margin-left: 55px;margin-top: -50px; font-size:11px; margin-bottom: 40px"><b>Umidade:</b> <br> 40% a 75% </p>
             <div>
             <! PRESSÃO >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Pressão atmosférica:</b> <br> 1012 a 1020 hpa</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
+                <p style = "margin-left: 55px;margin-top: -48px; font-size:11px; margin-bottom: 40px"><b>Pressão atmosférica:</b> <br> 1012 a 1020 hpa</p>
             <div>            
         </div>
         """,
@@ -351,25 +354,25 @@ elif navegacao == "Alertas":
         """
         <div class="card-alerta condicao-cautela">
             <br>
-            <img src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-et-d-alerte-jaune.png", width = 55, style = "background: rgba(254, 217, 5, 0.1); border-radius: 10px; padding: 5px">
+            <img src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-et-d-alerte-jaune.png", width = 45, style = "background: rgba(254, 217, 5, 0.1); border-radius: 10px; padding: 5px">
             <br>
-            <h4 style="color: #ffc107; font-size: 20px; background: rgba(254, 217, 5, 0.1); border-radius: 12px; padding: 3px; margin-right: 22%; margin-left:3px; margin-top: -10px">🟡 PESCAR COM CAUTELA</h4>
-            <p style = "font-size: 13px">Condições com algum fator de atenção!</p>
+            <h4 style="color: #ffc107; font-size: 14px; background: rgba(254, 217, 5, 0.1); border-radius: 12px; padding: 3px; margin-right: 22%; margin-left:3px; margin-top: -10px">🟡 PESCAR COM CAUTELA</h4>
+            <p style = "font-size: 10px">Condições com algum fator de atenção!</p>
             <br>
             <! TEMPERATURA >
             <div class = "card-imagem">
-                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 55, style = "margin-top: -20px">
-                <p style = "margin-left: 65px;margin-top: -47px; font-size:13px;margin-bottom: 50px"><b>Temperatura:</b> <br>12-17°C ou 31-39°C</p>
+                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 45, style = "margin-top: -20px">
+                <p style = "margin-left: 55px;margin-top: -41px; font-size:11px;margin-bottom: 40px"><b>Temperatura:</b> <br>12-17°C ou 31-39°C</p>
             <div>
             <! UMIDADE >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Umidade:</b> <br>20-39% ou 76-85%</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
+                <p style = "margin-left: 55px;margin-top: -50px; font-size:11px; margin-bottom: 40px"><b>Umidade:</b> <br>20-39% ou 76-85%</p>
             <div>
             <! PRESSÃO >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Pressão atmosférica:</b> <br>1005-1011 ou Maior que 1020 hpa</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
+                <p style = "margin-left: 55px;margin-top: -48px; font-size:11px; margin-bottom: 40px"><b>Pressão atmosférica:</b> <br>1005-1011 ou Maior que 1020 hpa</p>
             <div>                        
         </div>
         """,
@@ -380,25 +383,25 @@ elif navegacao == "Alertas":
         """
         <div class="card-alerta condicao-nao-pescar">
             <br>
-            <img src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-et-d-alerte-rouge.png", width = 55, style = "background: rgba(230, 2, 2, 0.08); border-radius: 10px; padding: 5px">
+            <img src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-et-d-alerte-rouge.png", width = 45, style = "background: rgba(230, 2, 2, 0.08); border-radius: 10px; padding: 5px">
             <br>
-            <h4 style="color: #dc3545;font-size: 16px; background: rgba(230, 2, 2, 0.08); border-radius: 12px; padding: 5px; margin-right:48%; margin-left:3px; margin-top: -10px">🔴 NÃO PESCAR</h4>
-            <p style = "font-size: 13px">Condições climáticas extremas!</p>
+            <h4 style="color: #dc3545;font-size: 14px; background: rgba(230, 2, 2, 0.08); border-radius: 12px; padding: 4px; margin-right:48%; margin-left:3px; margin-top: -10px">🔴 NÃO PESCAR</h4>
+            <p style = "font-size: 10px">Condições climáticas extremas!</p>
             <br>
             <! TEMPERATURA >
             <div class = "card-imagem">
-                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 55, style = "margin-top: -20px">
-                <p style = "margin-left: 65px;margin-top: -47px; font-size:13px;margin-bottom: 50px"><b>Temperatura:</b> <br>Menor que 12°C ou Maior que 39°C</p>
+                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/79527626-esboco-clima-temperatura-icone-com-sol-e-floco-de-neve-placa-simbolo-vetor.jpg", width = 45, style = "margin-top: -20px">
+                <p style = "margin-left: 55px;margin-top: -41px; font-size:11px;margin-bottom: 40px"><b>Temperatura:</b> <br>Menor que 12°C ou Maior que 39°C</p>
             <div>
             <! UMIDADE >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Umidade:</b> <br> Menor que 20% ou Maior que 85% </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYz6qd9VIcFwnJsETmCQRKMjj268PUZ-f19gHYB6_sFQ&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-40px">
+                <p style = "margin-left: 55px;margin-top: -50px; font-size:11px; margin-bottom: 40px"><b>Umidade:</b> <br> Menor que 20% ou Maior que 85% </p>
             <div>
             <! PRESSÃO >
             <div class = "card-imagem">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 44, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
-                <p style = "margin-left: 65px;margin-top: -51px; font-size:13px; margin-bottom: 50px"><b>Pressão atmosférica:</b> <br> Menor que 1005hpa </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYIHDufOiCP5d985ogQc7aFOH-7rv3tNsyy6qLi1FgA&s=10", width = 37, style = "padding: 4px; border: 2px solid black; border-radius: 15px; margin-left: 4px ; margin-top:-37px">
+                <p style = "margin-left: 55px;margin-top: -48px; font-size:11px; margin-bottom: 40px"><b>Pressão atmosférica:</b> <br> Menor que 1005hpa </p>
             <div>                            
         </div>
         """,
@@ -413,7 +416,7 @@ elif navegacao == "Alertas":
                 <div class = "card-imagem" >
                     <span style="background-color: rgb(40,167,69,0.5); padding: 2px 10px; border-radius: 20px; font-size: 12px">● CONDIÇÃO ATUAL</span>
                     <h1 style = "margin-top: -10px; font-size: 38px">{condicao}</h1>
-                    <p style = "font-size:11px; margin-top: -30px">{texto_condição} <img src="{imagem_condicao}", width = 120, style = "border-radius: 200px; margin-left: 705px; margin-top: -75px;"</p>
+                    <p style = "font-size:11px; margin-top: -20px">{texto_condição} <img src="{imagem_condicao}", width = 120, style = "border-radius: 200px; margin-left: 655px; margin-top: -95px;"></p>
                 </div>
             </div>""",
             unsafe_allow_html=True,

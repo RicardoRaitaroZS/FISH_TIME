@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import csv
 import json
-from datetime import datetime
+from datetime import datetime,timedelta
 
 HOST = "mqtt-dashboard.com"
 PORT = 1883
@@ -23,7 +23,7 @@ def on_connect(client, userdata, flags, reason_code, properties):
 def on_message(client, userdata, msg):
     # CONVERTER PARA TEXTO
     payload = msg.payload.decode('utf-8')
-    data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data = (datetime.now() - timedelta(hours=3)).strftime("%Y-%m-%d %H:%M:%S")
     
     print(f"[{data}] Novo pacote recebido: {payload}")
     
@@ -65,3 +65,4 @@ try:
 except KeyboardInterrupt:
     print("\nEncerrando coleta de dados...")
     client.disconnect()        
+    
