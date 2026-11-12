@@ -2,7 +2,7 @@
 
 Estação meteorológica inteligente desenvolvida para monitorar o clima em tempo real e indicar condições seguras para pesca.
 
-Projeto acadêmico desenvolvido em grupo, do curso de **Ciência da Computação — UNIP**.
+Projeto acadêmico desenvolvido em grupo, por alunos do curso de **Ciência da Computação — UNIP**.
 
 ---
 
