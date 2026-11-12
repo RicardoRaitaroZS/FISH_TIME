@@ -5,7 +5,7 @@ from datetime import datetime,timedelta
 
 HOST = "mqtt-dashboard.com"
 PORT = 1883
-TOPIC = "prof.thiago/unip/pd2/fish_time/dados"
+TOPIC = "prof_thiago/unip/pd2/FISH_TIME/dados"
 
 DADOS_ESTACAO = "dados_estacao.csv"
 

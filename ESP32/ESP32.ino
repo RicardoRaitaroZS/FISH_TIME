@@ -7,8 +7,8 @@
 //CONEXÕES WIFI E MQTT
 const char* ssid = "RAITARO";
 const char* password = "riri2008";
-const char* mqtt_server = "mqtt-dashboard.com";
-const char* mqtt_topic  = "prof.thiago/unip/pd2/fish_time/dados";
+const char* mqtt_server = "mqtt-dashboard.com"; 
+const char* mqtt_topic  = "prof_thiago/unip/pd2/FISH_TIME/dados";
 
 //PINOS DHT E BMP280
 const int DHT_PIN = 14;
@@ -112,6 +112,5 @@ void loop() {
     } else {
       Serial.println("--> Falha ao enviar.");
     }
-  
   delay(6000);
 }
